@@ -1,0 +1,650 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.cinzel-decorative-regular {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cinzel-decorative-bold {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.cinzel-decorative-black {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+.pt-sans-regular {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-sans-bold {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-sans-regular-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-sans-bold-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-serif-regular {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-serif-bold {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-serif-regular-italic {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-serif-bold-italic {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+
+h1 {
+  font-size: 45px;
+  font-weight: 400;
+  margin-bottom: 25px;
+  font-family: 'PT Serif', 'Times New Roman', Times, serif;
+  color: #FBE19A;
+}
+
+/* Geral */
+body {
+  background-color: #2f3e42;
+  font-family: 'PT Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #FBE19A;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 600px;
+  padding-top: 60px;
+  text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho */
+
+
+/* Caixa do quiz */
+.quiz-box {
+  border: 2px solid #c8b887;
+  padding: 30px;
+  background-color: #2d3b3f;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+/* Pergunta */
+#question {
+  font-size: 26px;
+  margin-bottom: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Respostas (botões) */
+#answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+#answers button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #c8b887;
+  background-color: #2f3e42;
+  color: #FBE19A;;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.08s ease;
+  text-align: center;
+  border-radius: 4px;
+}
+
+#answers button:hover:not(:disabled) {
+  background-color: #3f5156;
+  transform: translateY(-1px);
+}
+
+#answers button:disabled {
+  cursor: default;
+  opacity: 0.9;
+}
+
+/* Estados correto/errado */
+.correct {
+  background-color: #3da65b !important;
+  border-color: #3da65b !important;
+  color: rgb(255, 255, 255);
+}
+
+.wrong {
+  background-color: #c74848 !important;
+  border-color: #c74848 !important;
+  color: rgb(255, 255, 255);
+}
+
+/* Feedback */
+#feedback {
+  margin-top: 12px;
+  min-height: 24px;
+}
+
+.feedback-box {
+  display: inline-block;
+  padding: 8px;
+  background-color: #c8b887;
+  color: #2f3e42;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+/* Botão Próximo */
+.next-btn {
+  margin-top: 15px;
+  width: 120px;
+  background-color: #e3d6a4;
+  color: #2f3e42;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Mensagem final */
+.quiz-box .end {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f5f5e9;
+}
+
+
+.topbar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.logo {
+  width: 55px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+.menu {
+  font-size: 1.6rem;
+  color: #FBE19A;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+/* conteúdo central */
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  color: #FBE19A;
+  z-index: 5;
+}
+
+
+/* texto */
+.text-block {
+  margin-top: -50px; /* ajustado para mover o texto um pouco mais para cima */
+}
+
+.cta {
+  display: inline-block;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #FBE19A;
+  border-bottom: 1px solid #FBE19A;
+  padding-bottom: 3px;
+  transition: 0.5s;
+  margin-top: 230px; /* movido mais para baixo */
+}
+
+.cta:hover {
+  color: #fff;
+  border-color: #fff;
+}
+ .menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(55, 69, 71, 0.95);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 2000;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-content {
+  width: 90%;
+  max-width: 1200px;
+  color: #FBE19A;
+  text-align: center;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 20px 16px;
+  font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.close-menu {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2.2rem;
+  color: #FBE19A;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.close-menu:hover {
+  color: white;
+}
+
+/* GRID DAS 4 COLUNAS */
+
+.menu-columns {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.menu-columns .col h3 {
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: 'PT Serif', 'Times New Roman', Times, serif !important;
+}
+
+.menu-columns .col a {
+  display: block;
+  margin: 8px 0;
+  color: #FBE19A;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  transition: 0.3s;
+  font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.menu-columns .col a:hover {
+  color: white;
+}
+
+.quiz-box .end {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FBE19A;
+  text-align: center;
+  margin: 20px 0;
+}
+
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  #question {
+    font-size: 24px;
+  }
+
+  .quiz-box {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+
+  #question {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  #answers button {
+    font-size: 15px;
+    padding: 9px;
+  }
+
+  .quiz-box {
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  .next-btn {
+    padding: 8px;
+    font-size: 14px;
+    width: 110px;
+  }
+
+  .menu-columns {
+    gap: 40px;
+  }
+
+  .menu-columns .col h3 {
+    font-size: 1.6rem;
+    font-family: 'PT Serif', 'Times New Roman', Times, serif !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .menu-columns .col a {
+    font-size: 1rem;
+    font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .topbar {
+    top: 15px;
+    left: 15px;
+    right: 15px;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .menu {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    display: block;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    padding-top: 80px;
+  }
+
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0;
+    padding-bottom: 20px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .quiz-box {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  #question {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  #answers {
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  #answers button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .quiz-box {
+    padding: 18px;
+  }
+
+  .feedback-box {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .next-btn {
+    padding: 8px;
+    font-size: 13px;
+    width: 100px;
+    margin-top: 12px;
+  }
+
+  .topbar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .logo {
+    width: 45px;
+  }
+
+  .menu {
+    font-size: 1.2rem;
+  }
+
+  .menu-overlay {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+  
+  .menu-content {
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: scroll;
+    padding: 50px 20px 20px 20px;
+  }
+
+  .menu-columns {
+    gap: 25px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-columns .col {
+    flex: 0 1 100%;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .menu-columns .col h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-family: 'PT Serif', 'Times New Roman', Times, serif !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .menu-columns .col a {
+    font-size: 1rem;
+    margin: 6px 0;
+    font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .close-menu {
+    font-size: 2rem;
+    top: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .container {
+    width: 95%;
+    padding-top: 70px;
+    padding-bottom: 15px;
+  }
+
+  #question {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  #answers {
+    gap: 6px;
+  }
+
+  #answers button {
+    font-size: 13px;
+    padding: 7px;
+  }
+
+  .quiz-box {
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  .feedback-box {
+    font-size: 11px;
+    padding: 5px;
+  }
+
+  #feedback {
+    min-height: 20px;
+    margin-top: 10px;
+  }
+
+  .next-btn {
+    padding: 7px;
+    font-size: 12px;
+    width: 90px;
+    margin-top: 10px;
+  }
+
+  .quiz-box .end {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+
+  .topbar {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .logo {
+    width: 35px;
+  }
+
+  .menu {
+    font-size: 1rem;
+  }
+
+  .menu-content {
+    padding: 45px 16px 16px 16px;
+  }
+
+  .menu-columns {
+    gap: 20px;
+  }
+
+  .menu-columns .col {
+    flex: 0 1 100%;
+    max-width: 280px;
+  }
+
+  .menu-columns .col h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-family: 'PT Serif', 'Times New Roman', Times, serif !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .menu-columns .col a {
+    font-size: 0.95rem;
+    margin: 5px 0;
+    font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .close-menu {
+    font-size: 1.5rem;
+    top: 12px;
+    right: 12px;
+  }
+}
+
+

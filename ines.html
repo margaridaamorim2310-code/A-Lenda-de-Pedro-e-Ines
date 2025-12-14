@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inês de Castro</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  
+    <link rel="stylesheet" href="confessionario.css">
+    <script src="transitions.js"></script>
+</head>
+
+<body>
+    <header class="topbar">
+      <a href="index.html" class="logo-link">
+        <img src="brasao.png" alt="Brasão" class="logo">
+      </a>
+      <div class="menu" tabindex="0">☰</div>
+    </header>
+
+    <main class="content-area">
+
+        <!-- BLOCO IMAGEM + TÍTULO (LADO A LADO) -->
+        <div class="title-block">
+            <img src="inescastro.png" class="decor-img" alt="Imagem de Inês de Castro">
+            <h1>NÊS DE CASTRO</h1>
+        </div>
+
+        <p class="texto">
+            Dizem que o amor é cego, mas eu diria que em Coimbra, no século XIV, era também perigoso.
+            Nunca procurei a coroa, apenas o coração de Pedro. Servia a infanta D. Constança, e foi no
+            seu serviço que o destino me pregou a maior das partidas. O castelo de Santa Clara foi o
+            nosso refúgio e a nossa perdição. Entre beijos e segredos, ignorámos que as paredes têm
+            ouvidos, e que, em Portugal, a política fala mais alto que o amor. <br><br>
+            
+            Acusaram-me de querer levar Castela para dentro da corte. Eu apenas quis uma família:
+            Pedro, os nossos filhos, e alguma paz. Mas no dia em que as espadas chegaram, percebi que
+            o amor, às vezes, também tem hora marcada. <br><br>
+
+            Se me perguntarem se valeu a pena… direi que sim. Fui amada com uma intensidade que os
+            séculos não apagaram. Só lamento que o meu retrato mais famoso me mostre num ângulo
+            desfavorável.
+        </p>
+
+       <nav class="nav-links">
+    <a href="pedro.html" class="seguinte">Seguinte</a>
+</nav>
+
+    </main>
+
+    <!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="menu-overlay">
+      <div class="menu-content">
+        <span class="close-menu">✕</span>
+
+        <div class="menu-columns">
+
+          <div class="col">
+            <h3>A Lenda</h3>
+            <a href="historia.html">História</a>
+             <a href="quiz.html">Quiz</a>
+          </div>
+
+          <div class="col">
+            <h3>Legado</h3>
+            <a href="sitios.html">Lugares</a>
+            <a href="livros.html">Livros</a>
+            <a href="audiovisual.html">Audiovisual</a>
+            <a href="arte.html">Arte</a>
+          </div>
+
+          <div class="col">
+            <h3>Confessionário</h3>
+            <a href="ines.html">Ines de Castro</a>
+            <a href="pedro.html">Pedro I</a>
+            <a href="constança.html">Constança</a>
+            <a href="afonso.html">Afonso IV</a>
+            <a href="duarte.html">Duarte Pacheco</a>
+            <a href="alvaro.html">Alvaro Gonçalves</a>
+            <a href="maria.html">Maria Gonçalves</a>
+            <a href="fernao.html">Fernão Lopes</a>
+            <a href="joao.html">João do Mondego</a>
+            <a href="frei.html">Frei João das regras</a>
+          </div>
+
+          <div class="col">
+            <h3>Info</h3>
+            <a href="sobre.html"> Sobre o projeto</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  <script>
+    const menuBtn = document.querySelector(".menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const closeBtn = document.querySelector(".close-menu");
+
+    function openMenu() {
+      menuOverlay.classList.add("open");
+      // Focus on the first link in the menu
+      const firstLink = menuOverlay.querySelector("a");
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove("open");
+      // Focus back to menu button
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener("click", openMenu);
+
+    menuBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuOverlay.classList.contains("open")) {
+        closeMenu();
+      }
+    });
+  </script>
+</body>
+</html>

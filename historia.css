@@ -1,0 +1,821 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #374547;
+}
+
+body {
+  font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-color: #374547;
+  overflow: hidden;
+  color: #FBE19A;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-family: 'PT serif', serif;
+  font-size: 2.5rem;
+  color: #FBE19A;
+  margin-bottom: 20px;
+}
+
+/* Centrar e servir de âncora para o livro */
+.historia {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ===== TOPO ===== */
+.topbar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.logo {
+  width: 55px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+.menu {
+  font-size: 1.6rem;
+  color: #FBE19A;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+/* ===== FUNDO ===== */
+.bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.bg img {
+  width: 40%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+/* ===== LIVRO ===== */
+.book {
+  position: absolute;
+  width: min(400px, 70vw);
+  height: calc(min(400px, 70vw) * 1.2);
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  perspective: 2000px;
+  z-index: 10;
+}
+
+/* Cada página é a folha completa */
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* gira a partir do centro da lombada */
+  transform-origin: center left;
+  transform-style: preserve-3d;
+  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+
+/* Frente e verso */
+.page .front,
+.page .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f5e8c7;
+  border: 1px solid #d8c8a1;
+  padding: 40px;
+  backface-visibility: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  color: #3a2c1a;
+}
+
+.page .back {
+  transform: rotateY(180deg);
+}
+
+/* Tipografia do livro */
+.page .front h2,
+.page .back h2 {
+  font-family: 'PT Serif', serif;
+  font-weight: 700;
+}
+
+.page .front p,
+.page .back p {
+  font-family: 'PT Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Página de capa (Pedro e Inês) */
+.cover-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.main-title {
+  font-family: 'Cinzel Decorative', serif !important;
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
+  margin: 0;
+  line-height: 1.2;
+  position: relative;
+  padding: 30px 0;
+  color: #8b7355 !important;
+}
+
+.main-title::before,
+.main-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37 20%, #d4af37 80%, transparent);
+}
+
+.main-title::before {
+  top: 0;
+}
+
+.main-title::after {
+  bottom: 0;
+}
+
+/* Página final (Fim) */
+.end-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.end-title {
+  font-family: 'Cinzel Decorative', serif !important;
+  font-size: 3rem !important;
+  font-weight: 400 !important;
+  color: #8b7355 !important;
+  margin: 0;
+}
+
+/* ===== CONTROLOS ===== */
+.controls {
+  position: absolute;
+  bottom: -60px;
+  left: -12px; /* pequeno offset para a esquerda */
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fbe19a;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.controls button:hover {
+  color: white;
+}
+
+/* pilha de páginas estável: p1 no topo, p2 abaixo, etc. */
+#p1 { z-index: 7; }
+#p2 { z-index: 6; }
+#p3 { z-index: 5; }
+#p4 { z-index: 4; }
+#p5 { z-index: 3; }
+#p6 { z-index: 2; }
+#p7 { z-index: 1; }
+
+/* ===== MENU ===== */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(55, 69, 71, 0.95);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 2000;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-content {
+  width: 90%;
+  max-width: 1200px;
+  color: #FBE19A;
+  text-align: center;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 20px 16px;
+}
+
+.close-menu {
+  top: 18px;
+  right: 20px;
+  font-size: 2.2rem;
+  color: #FBE19A;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 5;
+  position: absolute;
+}
+
+.close-menu:hover {
+  color: white;
+}
+
+.menu-columns {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.menu-columns .col h3 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.menu-columns .col a {
+  display: block;
+  margin: 8px 0;
+    font-weight: 400;
+  color: #FBE19A;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  transition: 0.3s;
+}
+
+.menu-columns .col a:hover {
+  color: white;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1200px) {
+  .book {
+    width: min(380px, 65vw);
+    height: calc(min(380px, 65vw) * 1.2);
+  }
+
+  .controls {
+    gap: 20px;
+  }
+
+  .menu-columns {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .book {
+    width: min(350px, 60vw);
+    height: calc(min(350px, 60vw) * 1.2);
+  }
+
+  .page .front,
+  .page .back {
+    padding: 30px;
+    font-size: 0.95rem;
+  }
+
+  .page .front h2,
+  .page .back h2 {
+    font-size: 1.5rem;
+  }
+
+  .page .front p,
+  .page .back p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .controls {
+    gap: 15px;
+    bottom: -50px;
+  }
+
+  .controls button {
+    font-size: 1.5rem;
+  }
+
+  .menu-columns {
+    gap: 40px;
+  }
+
+  .menu-columns .col h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  .menu-columns .col a {
+    font-size: 1rem;
+  }
+
+  .topbar {
+    top: 15px;
+    left: 15px;
+    right: 15px;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .menu {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 70px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-title {
+    display: block;
+    position: relative;
+    left: auto;
+    top: auto;
+    font-size: 1.8rem;
+    color: #FBE19A;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .historia {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book {
+    position: relative;
+    width: 80vw;
+    max-width: 400px;
+    height: calc(80vw * 1.35);
+    max-height: calc(400px * 1.35);
+    left: 0;
+    top: 0;
+    transform: none;
+    perspective: none;
+    margin: 0 auto;
+  }
+
+  .page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none !important;
+    transform-style: flat;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .page.flipped {
+    transform: none !important;
+  }
+
+  .page .front,
+  .page .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 25px 18px;
+    transform: none !important;
+    backface-visibility: visible;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .page .front.active,
+  .page .back.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .page .front h2,
+  .page .back h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .page .front p,
+  .page .back p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 25px;
+  }
+
+  .controls button {
+    font-size: 1.5rem;
+    background: rgba(55, 69, 71, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .logo {
+    width: 45px;
+  }
+
+  .menu {
+    font-size: 1.2rem;
+  }
+
+  .menu-columns {
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .menu-columns .col {
+    flex: 0 1 45%;
+  }
+
+  .menu-columns .col h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .menu-columns .col a {
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+
+  .close-menu {
+    top: 16px;
+    right: 16px;
+    font-size: 2rem;
+    z-index: 5;
+    position: absolute;
+  }
+
+  .bg img {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 65px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .book {
+    width: 85vw;
+    max-width: 350px;
+    height: calc(85vw * 1.4);
+    max-height: calc(350px * 1.4);
+  }
+
+  .page .front,
+  .page .back {
+    padding: 20px 15px;
+  }
+
+  .page .front h2,
+  .page .back h2 {
+    font-size: 1rem;
+    margin-bottom: 7px;
+    font-weight: 400;
+  }
+
+  .page .front p,
+  .page .back p {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .controls {
+    bottom: 15px;
+    gap: 20px;
+  }
+
+  .controls button {
+    font-size: 1.3rem;
+    padding: 8px 16px;
+  }
+
+  .topbar {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .logo {
+    width: 35px;
+  }
+
+  .menu {
+    font-size: 1rem;
+  }
+
+  .menu-columns {
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .menu-columns .col {
+    flex: 0 1 100%;
+  }
+
+  .menu-columns .col h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .close-menu {
+    top: 12px;
+    right: 12px;
+    font-size: 1.5rem;
+    z-index: 5;
+    position: absolute;
+  }
+
+  .bg img {
+    width: 80%;
+  }
+
+  .historia {
+    padding-bottom: 120px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    padding-top: 60px;
+  }
+
+  .page-title {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .book {
+    width: 88vw;
+    max-width: 320px;
+    height: calc(88vw * 1.45);
+    max-height: calc(320px * 1.45);
+  }
+
+  .page .front,
+  .page .back {
+    padding: 18px 12px;
+  }
+
+  .page .front h2,
+  .page .back h2 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .page .front p,
+  .page .back p {
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .controls {
+    bottom: 12px;
+    gap: 18px;
+  }
+
+  .controls button {
+    font-size: 1.1rem;
+    padding: 7px 14px;
+  }
+
+  .topbar {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+  }
+
+  .logo {
+    width: 32px;
+  }
+
+  .menu {
+    font-size: 0.9rem;
+  }
+
+  .historia {
+    padding-bottom: 100px;
+  }
+}
+
+.topbar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  width: 55px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+.menu {
+  font-size: 1.6rem;
+  color: #FBE19A;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+/* conteúdo central */
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  color: #FBE19A;
+  z-index: 5;
+}
+
+
+/* texto */
+.text-block {
+  margin-top: -50px; /* ajustado para mover o texto um pouco mais para cima */
+}
+
+.cta {
+  display: inline-block;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #FBE19A;
+  border-bottom: 1px solid #FBE19A;
+  padding-bottom: 3px;
+  transition: 0.5s;
+  margin-top: 230px; /* movido mais para baixo */
+}
+
+.cta:hover {
+  color: #fff;
+  border-color: #fff;
+}
+ .menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(55, 69, 71, 0.95);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 2000;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-content {
+  width: 90%;
+  max-width: 1200px;
+  color: #FBE19A;
+  text-align: center;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 20px 16px;
+}
+
+.close-menu {
+  top: 18px;
+  right: 20px;
+  font-size: 2.2rem;
+  color: #FBE19A;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 5;
+  position: absolute;
+}
+
+.close-menu:hover {
+  color: white;
+}
+
+/* GRID DAS 4 COLUNAS */
+
+.menu-columns {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.menu-columns .col h3 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.menu-columns .col a {
+  display: block;
+  margin: 8px 0;
+  color: #FBE19A;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  transition: 0.3s;
+}
+
+.menu-columns .col a:hover {
+  color: white;
+}

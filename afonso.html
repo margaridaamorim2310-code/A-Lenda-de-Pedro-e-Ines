@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afonso IV</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  
+    <link rel="stylesheet" href="confessionario.css">
+    <script src="transitions.js"></script>
+</head>
+
+<body>
+    <header class="top-bar">
+        
+    </header>
+
+    <main class="content-area">
+
+        <!-- BLOCO IMAGEM + TÍTULO (LADO A LADO) -->
+        <div class="title-block">
+            <img src="afonso.png" class="decor-img" alt="Imagem de Inês de Castro">
+            <h1>fonso IV</h1>
+        </div>
+
+        <p class="texto">
+          Reino não se governa com o coração. É o que dizem.
+	Eu vi Castela à espreita, pronta a aproveitar o desvario de Pedro. Vi a corte dividida, o sangue pronto a ferver. E tomei uma decisão que me assombra mais que qualquer fantasma. <br><br>
+	Mandei matar Inês para salvar o reino, e perdi o amor de meu filho. É o preço de ser rei: tomar decisões que o homem não suportaria.
+Às vezes, nas noites frias de Lisboa, ouço o Mondego murmurar o nome dela. Talvez seja o vento. Ou talvez seja Deus a lembrar-me do que o poder não apaga.
+        </p>
+
+        <nav class="nav-links">
+    <a href="constança.html" class="anterior">Anterior</a>
+    <a href="duarte.html" class="seguinte">Seguinte</a>
+</nav>
+
+    </main>
+<header class="topbar">
+      <a href="index.html" class="logo-link">
+        <img src="brasao.png" alt="Brasão" class="logo">
+      </a>
+      <div class="menu">☰</div>
+    </header>
+
+    
+  <!-- MENU OVERLAY -->
+  <div id="menu-overlay" class="menu-overlay">
+    <div class="menu-content">
+      <span class="close-menu">✕</span>
+
+      <div class="menu-columns">
+
+        <div class="col">
+          <h3>A Lenda</h3>
+          <a href="historia.html">História</a>
+           <a href="quiz.html">Quiz</a>
+        </div>
+
+        <div class="col">
+          <h3>Legado</h3>
+          <a href="sitios.html">Lugares</a>
+          <a href="livros.html">Livros</a>
+          <a href="audiovisual.html">Audiovisual</a>
+          <a href="arte.html">Arte</a>
+        </div>
+
+        <div class="col">
+          <h3>Confessionário</h3>
+          <a href="ines.html">Ines de Castro</a>
+          <a href="pedro.html">Pedro I</a>
+          <a href="constança.html">Constança</a>
+          <a href="afonso.html">Afonso IV</a>
+          <a href="duarte.html">Duarte Pacheco</a>
+          <a href="alvaro.html">Alvaro Gonçalves</a>
+          <a href="maria.html">Maria Gonçalves</a>
+          <a href="fernao.html">Fernão Lopes</a>
+          <a href="joao.html">João do Mondego</a>
+          <a href="frei.html">Frei João das regras</a>
+        </div>
+
+        <div class="col">
+          <h3>Info</h3>
+          <a href="sobre.html"> Sobre o projeto</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector(".menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const closeBtn = document.querySelector(".close-menu");
+
+    function openMenu() {
+      menuOverlay.classList.add("open");
+      // Focus on the first link in the menu
+      const firstLink = menuOverlay.querySelector("a");
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove("open");
+      // Focus back to menu button
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener("click", openMenu);
+
+    menuBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuOverlay.classList.contains("open")) {
+        closeMenu();
+      }
+    });
+  </script>

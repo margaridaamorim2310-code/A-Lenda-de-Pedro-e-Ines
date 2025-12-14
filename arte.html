@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Legado – Arte</title>
+  <link rel="stylesheet" href="arte.css">
+  <link rel="stylesheet" href="../grid.css">
+  <style>
+    img { max-width: 100%; height: auto; display: block; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <script>
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
+    });
+  </script>
+
+<header class="topbar">
+  <a href="index.html" class="avatar">
+    <img src="brasao.png" alt="Icone">
+  </a>
+
+
+
+  <div class="menu" tabindex="0">☰</div>
+</header>
+
+<!-- imagem topo -->
+<div class="header-image">
+  <img src="tumulos.png" alt="">
+</div>
+
+<section class="conteudo">
+
+ 
+  <h1 class="titulo">Arte</h1>
+
+  <hr class="linha">
+
+  <div class="grid-container">
+    <div class="grid">
+
+      <div class="item col-4">
+        <h2>Drama de Inês de Castro</h2>
+        <div class="item-content">
+          <img src="bordalo.jpg" alt="Drama de Inês de Castro" class="thumb">
+          <div class="text-content">
+            <p>
+              Pintura a óleo de Columbano Bordalo Pinheiro (c. 1901 1904), localizada no Museu Militar de Lisboa.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item col-4">
+        <h2>Inês de Castro Pressentindo os Assassinos</h2>
+        <div class="item-content">
+          <img src="pressentindo.jpg" alt="Inês de Castro Pressentindo os Assassinos" class="thumb">
+          <div class="text-content">
+            <p>
+              Pintura a óleo de Francisco Augusto Metrass, datada de 1855, atualmente localizada no Museu Nacional de Arte Contemporânea.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item col-4">
+        <h2>O Assassínio de Inês de Castro</h2>
+        <div class="item-content">
+          <img src="assassinio.jpeg" alt="O Assassínio de Inês de Castro" class="thumb">
+          <div class="text-content">
+            <p>
+              Pintura de Karl Briullov (1834), que retrata o assassinato de Inês, encontra-se atualmente no Museu Estatal Russo em São Petersburgo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item col-4">
+        <h2>Túmulo de D. Pedro I</h2>
+        <div class="item-content">
+          <img src="tumulop.jpg" alt="Túmulo de D. Pedro I" class="thumb">
+          <div class="text-content">
+            <p>
+              Considerada uma obra prima da escultura tumular gótica portuguesa, datada de 1358–1367, localizada no Mosteiro de Alcobaça.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item col-4">
+        <h2>Túmulo de Inês de Castro</h2>
+        <div class="item-content">
+          <img src="tumuloi.jpg" alt="Túmulo de Inês de Castro" class="thumb">
+          <div class="text-content">
+            <p>
+              Igualmente no Mosteiro de Alcobaça, frente a frente com o túmulo de Pedro. Também gótico e da mesma época.
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+
+   
+
+    </div>
+  </div>
+
+  <hr class="linha2">
+
+</section>
+
+<!-- MENU OVERLAY -->
+    <div id="menu-overlay" class="menu-overlay">
+    <div class="menu-content">
+      <span class="close-menu">✕</span>
+
+      <div class="menu-columns">
+
+        <div class="col">
+          <h3>A Lenda</h3>
+          <a href="historia.html">História</a>
+           <a href="quiz.html">Quiz</a>
+        </div>
+
+        <div class="col">
+          <h3>Legado</h3>
+          <a href="sitios.html">Lugares</a>
+          <a href="livros.html">Livros</a>
+          <a href="audiovisual.html">Audiovisual</a>
+          <a href="arte.html">Arte</a>
+        </div>
+
+        <div class="col">
+          <h3>Confessionário</h3>
+          <a href="ines.html">Ines de Castro</a>
+          <a href="pedro.html">Pedro I</a>
+          <a href="constança.html">Constança</a>
+          <a href="afonso.html">Afonso IV</a>
+          <a href="duarte.html">Duarte Pacheco</a>
+          <a href="alvaro.html">Alvaro Gonçalves</a>
+          <a href="maria.html">Maria Gonçalves</a>
+          <a href="fernao.html">Fernão Lopes</a>
+          <a href="joao.html">João do Mondego</a>
+          <a href="frei.html">Frei João das regras</a>
+        </div>
+
+        <div class="col">
+          <h3>Info</h3>
+          <a href="sobre.html"> Sobre o projeto</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </section>
+
+  <script>
+    const menuBtn = document.querySelector(".menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const closeBtn = document.querySelector(".close-menu");
+
+    function openMenu() {
+      menuOverlay.classList.add("open");
+      // Focus on the first link in the menu
+      const firstLink = menuOverlay.querySelector("a");
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove("open");
+      // Focus back to menu button
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener("click", openMenu);
+
+    menuBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuOverlay.classList.contains("open")) {
+        closeMenu();
+      }
+    });
+
+    // LIVRO
+    const pages = Array.from(document.querySelectorAll(".page"));
+    let flipped = [];
+
+    const updateZIndices = () => {
+      pages.forEach((page, index) => {
+        page.style.zIndex = page.classList.contains("flipped")
+          ? index + 1
+          : pages.length + (pages.length - index);
+      });
+    };
+
+    const holdTopLayer = (page) => {
+      const tempZ = pages.length * 3;
+      page.style.zIndex = tempZ;
+      const onTransitionEnd = () => {
+        page.removeEventListener("transitionend", onTransitionEnd);
+        updateZIndices();
+      };
+      page.addEventListener("transitionend", onTransitionEnd);
+    };
+
+    updateZIndices();
+    pages[0].classList.add("flipped");
+    flipped.push(0);
+    holdTopLayer(pages[0]);
+
+    document.getElementById("next").addEventListener("click", () => {
+      const nextPage = flipped.length;
+      if (nextPage < pages.length) {
+        pages[nextPage].classList.add("flipped");
+        flipped.push(nextPage);
+        holdTopLayer(pages[nextPage]);
+      }
+    });
+
+    document.getElementById("prev").addEventListener("click", () => {
+      if (flipped.length > 0) {
+        const last = flipped.pop();
+        pages[last].classList.remove("flipped");
+        holdTopLayer(pages[last]);
+      }
+    });
+  </script>
+
+</body>
+</html>

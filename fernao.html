@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernão Lopes</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="confessionario.css">
+    <script src="transitions.js"></script>
+</head>
+
+<body>
+    <header class="top-bar">
+    
+    </header>
+
+    <main class="content-area">
+
+        <!-- BLOCO IMAGEM + TÍTULO (LADO A LADO) -->
+        <div class="title-block">
+            <img src="fernao.png" class="decor-img" alt="Imagem de Inês de Castro">
+            <h1>ernão lopes</h1>
+        </div>
+
+        <p class="texto">
+        Deixem-me dizer-vos: narrar esta história foi quase tão perigoso como vivê-la.
+	Eu, cronista régio, servi D. Duarte e ouvi as versões de todos. De Pedro, o amor; de Afonso, o remorso; de Inês, o silêncio.
+	O meu dever era a verdade, mas a verdade, em Portugal, gosta de romance. <br><br>
+	E assim nasceu a lenda: meio história, meio coração.
+Se exagerei? Talvez um pouco. Mas a História, sem emoção, é só um inventário de datas.
+        </p>
+
+        <nav class="nav-links">
+    <a href="maria.html" class="anterior">Anterior</a>
+    <a href="joao.html" class="seguinte">Seguinte</a>
+</nav>
+
+    </main>
+<header class="topbar">
+      <a href="index.html" class="logo-link">
+        <img src="brasao.png" alt="Brasão" class="logo">
+      </a>
+      <div class="menu">☰</div>
+    </header>
+
+    
+  <!-- MENU OVERLAY -->
+  <div id="menu-overlay" class="menu-overlay">
+    <div class="menu-content">
+      <span class="close-menu">✕</span>
+
+      <div class="menu-columns">
+
+        <div class="col">
+          <h3>A Lenda</h3>
+          <a href="historia.html">História</a>
+           <a href="quiz.html">Quiz</a>
+        </div>
+
+        <div class="col">
+          <h3>Legado</h3>
+          <a href="sitios.html">Sítios</a>
+          <a href="livros.html">Livros</a>
+          <a href="audiovisual.html">Audiovisual</a>
+          <a href="arte.html">Arte</a>
+        </div>
+
+        <div class="col">
+          <h3>Confessionário</h3>
+          <a href="ines.html">Ines de Castro</a>
+          <a href="pedro.html">Pedro I</a>
+          <a href="constança.html">Constança</a>
+          <a href="afonso.html">Afonso IV</a>
+          <a href="duarte.html">Duarte Pacheco</a>
+          <a href="alvaro.html">Alvaro Gonçalves</a>
+          <a href="maria.html">Maria Gonçalves</a>
+          <a href="fernao.html">Fernão Lopes</a>
+          <a href="joao.html">João do Mondego</a>
+          <a href="frei.html">Frei João das regras</a>
+        </div>
+
+        <div class="col">
+          <h3>Info</h3>
+          <a href="sobre.html"> Sobre o projeto</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector(".menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const closeBtn = document.querySelector(".close-menu");
+
+    function openMenu() {
+      menuOverlay.classList.add("open");
+      // Focus on the first link in the menu
+      const firstLink = menuOverlay.querySelector("a");
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove("open");
+      // Focus back to menu button
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener("click", openMenu);
+
+    menuBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openMenu();
+      }
+    });
+
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuOverlay.classList.contains("open")) {
+        closeMenu();
+      }
+    });
+  </script>

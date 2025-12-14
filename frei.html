@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frei João das Regras</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="confessionario.css">
+    <script src="transitions.js"></script>
+</head>
+
+<body>
+    <header class="top-bar">
+    
+    </header>
+
+    <main class="content-area">
+
+        <!-- BLOCO IMAGEM + TÍTULO (LADO A LADO) -->
+        <div class="title-block">
+            <img src="frei.png" class="decor-img" alt="Imagem de Inês de Castro">
+            <h1>rei joão das regras</h1>
+        </div>
+
+        <p class="texto">
+         Servi a casa real como confessor e conselheiro. E ouvi pecados que fariam corar o demónio.
+	O rei Afonso veio ter comigo depois do crime, a pedir absolvição. Dei-lha, porque sou servo de Deus, mas o peso não saiu dos seus ombros. <br><br>
+	Mais tarde, Pedro mandou-me rezar missas por Inês. Disse que ela fora sua esposa perante Deus, embora sem testemunhas.
+Não sei se o Céu reconhece casamentos feitos às escondidas, mas se reconhece o amor, então Inês entrou de véu branco.
+
+        <nav class="nav-links">
+    <a href="joao.html" class="anterior">Anterior</a>
+   
+</nav>
+
+    </main>
+<header class="topbar">
+      <a href="index.html" class="logo-link">
+        <img src="brasao.png" alt="Brasão" class="logo">
+      </a>
+      <div class="menu">☰</div>
+    </header>
+
+    
+  <!-- MENU OVERLAY -->
+  <div id="menu-overlay" class="menu-overlay">
+    <div class="menu-content">
+      <span class="close-menu">✕</span>
+
+      <div class="menu-columns">
+
+        <div class="col">
+          <h3>A Lenda</h3>
+          <a href="historia.html">História</a>
+           <a href="quiz.html">Quiz</a>
+        </div>
+
+        <div class="col">
+          <h3>Legado</h3>
+          <a href="sitios.html">Lugares</a>
+          <a href="livros.html">Livros</a>
+          <a href="audiovisual.html">Audiovisual</a>
+          <a href="arte.html">Arte</a>
+        </div>
+
+        <div class="col">
+          <h3>Confessionário</h3>
+          <a href="ines.html">Ines de Castro</a>
+          <a href="pedro.html">Pedro I</a>
+          <a href="constança.html">Constança</a>
+          <a href="afonso.html">Afonso IV</a>
+          <a href="duarte.html">Duarte Pacheco</a>
+          <a href="alvaro.html">Alvaro Gonçalves</a>
+          <a href="maria.html">Maria Gonçalves</a>
+          <a href="fernao.html">Fernão Lopes</a>
+          <a href="joao.html">João do Mondego</a>
+          <a href="frei.html">Frei João das regras</a>
+        </div>
+
+        <div class="col">
+          <h3>Info</h3>
+          <a href="sobre.html"> Sobre o projeto</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector(".menu");
+    const menuOverlay = document.getElementById("menu-overlay");
+    const closeBtn = document.querySelector(".close-menu");
+
+    menuBtn.addEventListener("click", () => {
+      menuOverlay.classList.add("open");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      menuOverlay.classList.remove("open");
+    });
+  </script>
+</body>
+</html>
+
